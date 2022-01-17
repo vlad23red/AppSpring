@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header>
+    <form>
+        <p style="text-align: left;">
+            <a th:href="index">Работа с файлами |</a>
+            <a th:href="result">Результат |</a>
+        <h1 style="text-align: center;">Клиент серверное приложение</h1>
+        </p>
+    </form>
+</header>
+<hr/>
+
+<form method="POST" th:action="@{/resultCSV}" enctype="multipart/form-data" style="text-align: center;">
+    <input type="file" name="files" class="form-control-file" id="file" accept=".csv"/> <br/><br/>
+    <button type="submit" name="submitBt">Загрузить</button>
+    <button type="reset" name="resetBt">Очистить</button>
+</form>
+<hr/>
+<form >
+    <p style="font-size: 1.5em; text-align: center;">Результат конкатенирования значений</p>
+    <p style="font-size: 1.5em; text-align: center;">столбцы mcc_code + tr_type</p>
+    <div>
+        <table border="1" align = center>
+            <tr>
+                <th>mcc_code</th>
+                <th>tr_type</th>
+                <th>mcc_code + tr_type</th>
+            </tr>
+            <tr th:each ="data : ${datas}">
+                <!--/*@thymesVar id="mccCode" type=""*/-->
+                <td th:text="${data.mccCode}">...</td>
+                <td th:text="${data.trType}">...</td>
+                <td th:text="${data.codeTrType}">...</td>
+
+            </tr>
+        </table>
+    </div>
+    </p>
+</form>
+
+<hr/>
+</body>
+</html>
